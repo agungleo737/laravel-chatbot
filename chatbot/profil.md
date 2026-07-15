@@ -18,7 +18,11 @@
   ### Backend
   - PHP, Laravel, Python, Golang, Java, MySQL, PostgreSQL, Mariadb
   ### AI
-  - RAG, Fine-Tuning, ChromaDB, Vector Database
+  - RAG (Retrieval-Augmented Generation)
+  - CAG (Cache-Augmented Generation)
+  - Fine-Tuning (melatih ulang model AI untuk domain tertentu)
+  - ChromaDB (vector database untuk aplikasi AI)
+  - Vector Database (penyimpanan embedding untuk pencarian semantik)
   ### Tools
   - Linux, Android Studio, VS Code, nmap, Wireshark, Burp Suite, PyTorch
 
