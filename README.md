@@ -1,58 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Portfolio Chatbot Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Backend API for the chatbot integrated into my personal portfolio website. The chatbot allows visitors to ask questions about my background, technical skills, and projects.
 
-## About Laravel
+This project works alongside the portfolio frontend to provide an interactive way for visitors to learn more about me.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Related Project
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Frontend:** [portofolio-web](https://github.com/agungleo737/portofolio-web)
+- **Live Portfolio:** [View Website](https://portofolio-web-two-theta.vercel.app/)
+- **Backend:** This repository
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
 
-## Learning Laravel
+- Backend service for the portfolio chatbot.
+- Processes questions submitted by visitors through the portfolio website.
+- Provides responses related to my profile, skills, and projects.
+- Integrates with the portfolio frontend through backend requests.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Tech Stack
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **PHP**
+- **Laravel**
+- **Composer**
+- **JavaScript / Vite** for frontend assets used by the Laravel application
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Requirements
 
-## Agentic Development
+Before running the project, make sure you have:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- PHP compatible with the version specified in `composer.json`
+- Composer
+- Node.js and npm
+- A supported database, if required by the current application configuration
+- API credentials, if the chatbot uses an external AI service
+
+## Installation
+
+### 1. Clone the Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/agungleo737/laravel-chatbot.git
+cd laravel-chatbot
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install PHP Dependencies
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Configure Environment Variables
 
-## Code of Conduct
+Create a local environment file:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+cp .env.example .env
+```
 
-## Security Vulnerabilities
+On Windows, you can also copy `.env.example` to `.env` manually.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Configure the environment variables according to your local setup. Add any required database settings or AI service credentials if applicable.
+
+**Never commit your actual `.env` file or API keys to GitHub.**
+
+### 4. Generate the Application Key
+
+```bash
+php artisan key:generate
+```
+
+### 5. Configure the Database
+
+If the application uses a database, configure the database connection in `.env`, then run:
+
+```bash
+php artisan migrate
+```
+
+Run this step only if the application's database migrations are required.
+
+### 6. Install Frontend Dependencies
+
+```bash
+npm install
+```
+
+### 7. Start the Development Server
+
+```bash
+php artisan serve
+```
+
+The Laravel development server is usually available at:
+
+`http://127.0.0.1:8000`
+
+If the application requires frontend assets during local development, run the Vite development server in a separate terminal:
+
+```bash
+npm run dev
+```
+
+## Integration
+
+The backend is intended to work with the portfolio frontend. The frontend sends chatbot questions to the backend, and the backend returns responses for display in the chat interface.
+
+Configure the frontend and backend URLs according to their deployment environments. Ensure that cross-origin requests are configured appropriately if they run on different domains.
+
+The exact API endpoint, request format, and response structure depend on the implementation in this repository.
+
+## Project Structure
+
+```text
+laravel-chatbot/
+├── app/          # Application logic
+├── bootstrap/    # Laravel application bootstrap
+├── chatbot/      # Chatbot-related components
+├── config/       # Application configuration
+├── database/     # Database migrations and seeders
+├── public/       # Public assets and entry point
+├── resources/    # Views and frontend resources
+├── routes/       # Application routes
+├── tests/        # Automated tests
+├── .env.example  # Environment configuration template
+├── artisan       # Laravel command-line interface
+├── composer.json # PHP dependencies
+├── package.json  # JavaScript dependencies
+└── README.md
+```
+
+## Security
+
+- Keep API keys and credentials private.
+- Do not commit `.env` files containing secrets.
+- Validate incoming chatbot requests.
+- Apply appropriate rate limiting to public API endpoints.
+- Configure CORS to allow only the intended frontend origins in production.
+
+## Author
+
+**Agung Leo**
+
+- GitHub: [@agungleo737](https://github.com/agungleo737)
+- Portfolio: [portofolio-web-two-theta.vercel.app](https://portofolio-web-two-theta.vercel.app/)
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+No license has been specified for this project yet.
